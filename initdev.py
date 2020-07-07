@@ -58,7 +58,7 @@ def _initEnv():
 prePushHook= f"""
 #!/bin/sh
 echo "Working Test 2!!!" > 1
-{get_sys_env_path()}/pip.exe freeze
+{get_sys_env_path()} freeze > requirements.txt
 git add requirements.txt
 git commit --reuse-message=HEAD
 """.lstrip('\n')
@@ -76,9 +76,9 @@ def _writePrePushHook():
 _writePrePushHook()
 
 def get_sys_env_path():
-    path = f"./{config.get('DEFAULT','env_name')}/Scripts"
+    path = f"./{config.get('DEFAULT','env_name')}/Scripts/pip.exe"
     return os.path.normpath(path)
-#get_sys_env_path()
+get_sys_env_path()
 
 def _doPrePush():
     
